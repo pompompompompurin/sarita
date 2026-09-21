@@ -447,7 +447,7 @@ footer .script{font-size:32px}
   <!-- ===== Juego 3: burbujas ===== -->
   <section class="juego nuevo" id="burbujas">
     <header class="j-head"><span class="kicker">Juego 3</span><h2>Burbujas de piropos</h2>
-      <p>Explotá las burbujas antes de que se escapen: cada una guarda algo lindo para vos.</p></header>
+      <p>Explotá las burbujas antes de que se escapen: cada una guarda algo lindo para ti ^^.</p></header>
     <div class="info"><div class="contador">Piropos atrapados: <b id="burbCount">0</b></div></div>
     <div class="arena-b" id="burbArena"></div>
     <div class="frase-card" id="burbFrase" aria-live="polite" style="margin-top:16px"><p class="vacia">Tocá una burbuja 🌈</p></div>
@@ -504,9 +504,9 @@ footer .script{font-size:32px}
   <!-- ===== Sobre y carta ===== -->
   <section class="juego" id="sobre">
     <header class="j-head">
-      <span class="kicker">Para vos</span>
+      <span class="kicker">para ti ^^</span>
       <h2>Un sobre para el final</h2>
-      <p>Guardé algo escrito sólo para vos. Tocá el sobre para abrirlo.</p>
+      <p>Guardé algo escrito sólo para ti ^^. Tocá el sobre para abrirlo.</p>
     </header>
     <div class="sobre-zona" id="sobreZona">
 
@@ -515,7 +515,7 @@ footer .script{font-size:32px}
         <div class="sobre-hint" aria-hidden="true">Tocá el sobre <b>↓</b></div>
         <button class="sobre" id="sobreBtn" type="button" aria-label="Abrir el sobre y leer la carta" aria-expanded="false" aria-controls="cartaVista">
           <span class="s-atras" aria-hidden="true"></span>
-          <span class="s-hoja" aria-hidden="true"><b>Para vos 💛</b></span>
+          <span class="s-hoja" aria-hidden="true"><b>para ti ^^ 💛</b></span>
           <svg class="s-frente" viewBox="0 0 300 200" preserveAspectRatio="none" aria-hidden="true">
             <path d="M0 0 L150 112 L300 0 L300 188 Q300 200 288 200 L12 200 Q0 200 0 188 Z" fill="url(#gSobFrente)" stroke="#d98a00" stroke-opacity=".55" stroke-width="1.5" stroke-linejoin="round"/>
             <path d="M6 196 L150 112 L294 196" fill="none" stroke="#d98a00" stroke-opacity=".3" stroke-width="1.2" stroke-linejoin="round"/>
@@ -549,6 +549,7 @@ footer .script{font-size:32px}
   <div class="script" id="firma">Hecho con amor 💛</div>
   <p>🌸 🌻 💛 🦋 💜 🌷</p>
   <p class="mati" data-mati></p>
+  
 </footer>
 
 <script>
@@ -560,8 +561,8 @@ footer .script{font-size:32px}
    los juegos se adaptan solos (no hace falta tocar nada más).
    ============================================================ */
 const C = {
-  titulo: "Un jardín de mil colores, hecho con cariño para vos",
-  subtitulo: "Deshojá pétalos, explotá burbujas, pintá flores y armá tu ramo. Cada rincón de este jardín guarda algo lindo para vos. La distancia no le gana.",
+  titulo: "Un jardín colorido, hecho con cariño para ti ^^",
+  subtitulo: "Deshojá pétalos, explotá burbujas, pintá flores y armá tu ramo. Cada rincón de este jardín guarda algo lindo para ti ^^. La distancia no le gana.",
   firma: "Hecho con amor, con todos los colores que me hacés ver 💗",
   /* Dedicatoria sutil: aparece en la portada, al pie de cada juego, en el vale, en la tierra de la planta y en el footer */
   dedicatoria: "Hecho con amor por el amor de tu vida (Yo, Mati)",
@@ -614,12 +615,17 @@ const C = {
      · Los saltos de línea normales también se respetan.
      · No uses el carácter ` (comilla invertida) ni la secuencia ${ dentro del texto. */
   carta: {
-    para: "Para vos,",
-    texto: `Acá va tu carta 💛
+    para: "para ti ^^,",
+    texto: `Holis mi princesita hermosa...
+    Hoy arranca lo que tú representas.
+    Salen florcitas lindas, los cielos se ven mas bonitos y el sol saluda con más energia ^^
 
-Reemplazá este texto por lo que quieras decirle: en el bloque de textos buscá "carta" y escribí dentro de "texto".
+    Todo de este día me recuerda a tí, porque tenerte a ti en mi vida me trae solo alegrias 💕
 
-Cada línea en blanco arma un párrafo nuevo, y los saltos de línea se respetan.`,
+    Sarahi, princesita hermosa, te amo <3
+    
+    Gracias por tenerme paciencia y amarme de la forma que lo haces 💖
+    `,
     cierre: "Con todo mi amor,",
     firma: "Mati 💛"
   },
@@ -907,7 +913,7 @@ function juegoRamo() {
       `<g class="fl"><path d="M${x0} ${y0} Q${cx} ${cy} ${x2} ${y2}" fill="none" stroke="#4b8a3d" stroke-width="3.5" stroke-linecap="round"/>` +
       `<ellipse cx="${hx + s * 9}" cy="${hy}" rx="9" ry="4" fill="#6fae5a" transform="rotate(${-30 * s} ${hx + s * 9} ${hy})"/>` +
       `<text x="${x2}" y="${y2}" text-anchor="middle" dominant-baseline="central" font-size="${r(34, 42)}" transform="rotate(${a * .6 + r(-10, 10)} ${x2} ${y2})">${f}</text></g>`);
-    msg.textContent = n === A.length ? C.ramo : `${n} ${n === 1 ? "flor" : "flores"} para vos 💗`;
+    msg.textContent = n === A.length ? C.ramo : `${n} ${n === 1 ? "flor" : "flores"} para ti ^^ 💗`;
     if (n === A.length) { const [x, y] = centroDe($(".ramo")); lluvia(x, y, 14, COL); }
   };
   F.forEach(f => {
