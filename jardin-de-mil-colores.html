@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Un jardín de mil colores</title>
+<meta name="author" content="Mati">
+<meta name="description" content="Hecho con amor por el amor de tu vida (Yo, Mati)">
+<!-- Hecho con amor por el amor de tu vida (Yo, Mati) 💛 -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Fraunces:ital,opsz,wght@0,9..144,600;1,9..144,500&family=Nunito:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+/* ============ Paleta (claro / oscuro) ============ */
+:root{
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+  --bg1:#fffbe8; --bg2:#fff0b8; --surface:#ffffff; --surface2:#fff8db;
+  --text:#4a3218; --muted:#8a6a3e;
+  --yellow:#ffc61a; --yellow-d:#e89b00; --yellow-l:#ffe680;
+  --rose:#e8577a; --rose-l:#ffd3de;
+  --leaf:#6fae5a; --leaf-d:#4b8a3d;
+  --line:rgba(160,110,20,.22); --shadow:0 12px 34px rgba(190,130,0,.18);
+  --sky1:#fff6cf; --sky2:#e7f5d3; --soil:#8a5a2b;
+  --bgA:#ffe4f0; --bgB:#fff4c6; --bgC:#dff6ff; --bgD:#ece0ff;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg1:#1d1810; --bg2:#2a2113; --surface:#2b2416; --surface2:#372c1a;
+    --text:#fff3d1; --muted:#d0b98a;
+    --yellow:#ffd23f; --yellow-d:#f2a900; --yellow-l:#ffe680;
+    --rose:#ff7f9e; --rose-l:#5a2a38;
+    --leaf:#8fca77; --leaf-d:#6aa757;
+    --line:rgba(255,220,130,.2); --shadow:0 12px 34px rgba(0,0,0,.45);
+    --sky1:#33290f; --sky2:#26361f; --soil:#a06a34;
+  --bgA:#2e1627; --bgB:#2a2113; --bgC:#12283a; --bgD:#241a3d;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg1:#1d1810; --bg2:#2a2113; --surface:#2b2416; --surface2:#372c1a;
+  --text:#fff3d1; --muted:#d0b98a;
+  --yellow:#ffd23f; --yellow-d:#f2a900; --yellow-l:#ffe680;
+  --rose:#ff7f9e; --rose-l:#5a2a38;
+  --leaf:#8fca77; --leaf-d:#6aa757;
+  --line:rgba(255,220,130,.2); --shadow:0 12px 34px rgba(0,0,0,.45);
+  --sky1:#33290f; --sky2:#26361f; --soil:#a06a34;
+  --bgA:#2e1627; --bgB:#2a2113; --bgC:#12283a; --bgD:#241a3d;
+  color-scheme:dark;
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*,*::before,*::after{box-sizing:border-box}
+body{
+  margin:0;color:var(--text);
+  background:var(--bg1);
+  background:linear-gradient(160deg,var(--bgA),var(--bgB) 35%,var(--bgC) 70%,var(--bgD));
+  background-attachment:fixed;
+  font-family:'Nunito',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  font-size:17px;line-height:1.55;overflow-x:hidden;
+}
+button{font-family:inherit}
+h1,h2,h3{font-family:'Fraunces',Georgia,'Times New Roman',serif;font-weight:600;line-height:1.15;margin:0}
+p{margin:0}
+:focus-visible{outline:3px solid var(--rose);outline-offset:3px;border-radius:6px}
+
+/* ============ Fondo de pétalos que caen ============ */
+.caida{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:0}
+.cae{position:absolute;top:-30px;opacity:.65;animation:caer linear infinite}
+.cae.pet{background:linear-gradient(135deg,#ffe680,#ffb800);border-radius:0 100% 0 100%}
+.cae.corazon{color:var(--rose);line-height:1}
+@keyframes caer{
+  0%{transform:translate(0,-5vh) rotate(0)}
+  50%{transform:translate(var(--dx),55vh) rotate(180deg)}
+  100%{transform:translate(calc(var(--dx)*-.5),110vh) rotate(360deg)}
+}
+main,footer,.hero{position:relative;z-index:1}
+
+/* ============ Botón de tema ============ */
+.tema{
+  position:fixed;z-index:80;right:14px;top:calc(12px + env(safe-area-inset-top,0px));
+  width:44px;height:44px;border-radius:50%;border:2px solid var(--line);
+  background:var(--surface);font-size:20px;cursor:pointer;box-shadow:var(--shadow)
+}
+
+/* ============ Hero ============ */
+.hero{min-height:90vh;display:grid;place-items:center;text-align:center;padding:72px 20px 40px;overflow:hidden}
+.hero-in{position:relative;z-index:2;max-width:720px}
+.script{font-family:'Caveat',cursive,'Segoe Script';font-size:clamp(26px,5vw,38px);color:var(--rose);font-weight:700}
+.hero h1{font-size:clamp(34px,7vw,66px);margin:.15em 0 .3em}
+.hero p.sub{font-size:clamp(17px,2.6vw,21px);color:var(--muted);max-width:560px;margin:0 auto 26px}
+.deco{position:absolute;pointer-events:none;filter:drop-shadow(0 8px 12px rgba(200,140,0,.25))}
+.d1{width:clamp(150px,28vw,320px);left:-50px;top:4%;animation:girar 70s linear infinite}
+.d2{width:clamp(120px,22vw,250px);right:-40px;bottom:6%;animation:girar 55s linear infinite reverse}
+.d3{width:clamp(50px,8vw,80px);right:13%;top:10%;animation:mecer 5s ease-in-out infinite}
+.d4{width:clamp(38px,6vw,56px);left:15%;bottom:12%;animation:mecer 6s ease-in-out infinite reverse}
+.heart-deco{position:absolute;fill:var(--rose);animation:latido 1.7s ease-in-out infinite;pointer-events:none}
+.h1c{width:30px;left:22%;top:18%}
+.h2c{width:22px;right:24%;top:30%;animation-delay:.5s}
+.h3c{width:26px;right:18%;bottom:28%;animation-delay:.9s}
+.h4c{width:18px;left:10%;bottom:34%;animation-delay:.3s}
+@keyframes girar{to{transform:rotate(360deg)}}
+@keyframes mecer{0%,100%{transform:rotate(-8deg) translateY(0)}50%{transform:rotate(8deg) translateY(-10px)}}
+@keyframes latido{0%,100%{transform:scale(1)}50%{transform:scale(1.25)}}
+.rebota{display:inline-block;margin-top:26px;font-size:28px;color:var(--yellow-d);text-decoration:none;animation:rebota 1.6s ease-in-out infinite}
+@keyframes rebota{0%,100%{transform:translateY(0)}50%{transform:translateY(10px)}}
+
+/* ============ Botones ============ */
+.btn{
+  font-weight:800;font-size:1rem;border:0;border-radius:999px;padding:.8em 1.6em;
+  background:linear-gradient(180deg,var(--yellow),var(--yellow-d));color:#4a3218;
+  box-shadow:0 4px 0 #c98200,0 10px 20px rgba(200,140,0,.28);
+  cursor:pointer;transition:transform .12s,box-shadow .12s;text-decoration:none;display:inline-block
+}
+.btn:hover{transform:translateY(-2px)}
+.btn:active{transform:translateY(3px);box-shadow:0 1px 0 #c98200}
+.btn:disabled{opacity:.55;cursor:default;transform:none}
+.btn.suave{background:var(--surface2);color:var(--text);box-shadow:0 0 0 2px var(--line)}
+.acciones{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:20px}
+
+/* ============ Navegación de juegos ============ */
+.chips{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;padding:0 16px 30px;max-width:900px;margin:0 auto}
+.chips a{
+  padding:.5em 1em;border-radius:999px;background:var(--surface);border:2px solid var(--line);
+  color:var(--text);text-decoration:none;font-weight:700;font-size:.95rem;box-shadow:var(--shadow);transition:transform .15s
+}
+.chips a:hover{transform:translateY(-3px);border-color:var(--yellow)}
+
+/* ============ Secciones de juego ============ */
+.wrap{max-width:980px;margin:0 auto;padding:0 18px}
+.juego{
+  background:var(--surface);border-radius:30px;box-shadow:var(--shadow);border:2px solid var(--line);
+  padding:clamp(20px,4vw,42px);margin:0 auto
+}
+.j-head{text-align:center;margin-bottom:24px}
+.kicker{font-family:'Caveat',cursive,'Segoe Script';font-size:26px;color:var(--rose);font-weight:700}
+.j-head h2{font-size:clamp(26px,4.6vw,40px)}
+.j-head p{color:var(--muted);max-width:560px;margin:.6em auto 0}
+.divisor{display:flex;justify-content:center;align-items:center;gap:14px;padding:26px 0;color:var(--rose)}
+.divisor svg{width:34px;height:34px}
+.divisor .h{width:18px;height:17px;fill:var(--rose);animation:latido 1.7s ease-in-out infinite}
+.contador{font-weight:700;color:var(--muted)}
+.contador b{color:var(--text)}
+
+/* ============ Juego 1: pétalos ============ */
+.petal-zona{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:26px;align-items:center}
+.petal-stage{width:100%;max-width:440px;margin:0 auto}
+.petal-stage svg{width:100%;height:auto;display:block;overflow:visible;filter:drop-shadow(0 10px 14px rgba(200,140,0,.25))}
+.petal{cursor:pointer;outline:none}
+.pi{transition:transform .2s ease}
+.petal:hover .pi,.petal:focus-visible .pi{transform:translateY(-9px)}
+.petal:focus-visible{filter:drop-shadow(0 0 5px var(--rose))}
+.petal.gone{opacity:0;pointer-events:none}
+.petal-lado{display:flex;flex-direction:column;gap:16px;text-align:center}
+.frase-card{
+  min-height:150px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:8px;
+  background:linear-gradient(160deg,var(--surface2),var(--surface));border:2px dashed var(--yellow);
+  border-radius:22px;padding:20px 22px
+}
+.frase-card .num{font-family:'Caveat',cursive,'Segoe Script';font-size:24px;color:var(--rose);font-weight:700}
+.frase-card p{font-family:'Fraunces',Georgia,serif;font-size:clamp(19px,2.6vw,25px);font-style:italic}
+.frase-card .vacia{color:var(--muted);font-style:normal;font-family:inherit;font-size:1rem}
+.frase-card.pop{animation:pop .5s cubic-bezier(.3,1.5,.5,1)}
+@keyframes pop{0%{transform:scale(.85);opacity:.2}100%{transform:scale(1);opacity:1}}
+.final{
+  display:none;background:var(--rose-l);color:var(--text);border-radius:18px;padding:14px 18px;font-weight:700
+}
+.final.on{display:block;animation:pop .6s ease}
+.tray-wrap{margin-top:26px}
+.tray-label{text-align:center;font-family:'Caveat',cursive,'Segoe Script';font-size:22px;color:var(--muted)}
+.tray{
+  min-height:92px;display:flex;flex-wrap:wrap;gap:6px 10px;justify-content:center;align-items:flex-end;
+  padding:8px 10px 0;border-bottom:8px solid var(--leaf);border-radius:0 0 10px 10px;position:relative
+}
+.slot{
+  position:relative;background:none;border:0;padding:0 2px 6px;cursor:pointer;display:flex;flex-direction:column;
+  align-items:center;gap:2px;border-radius:10px;transition:transform .15s
+}
+.slot:not(.lleno){visibility:hidden}
+.slot.lleno{animation:asentar .5s cubic-bezier(.3,1.6,.5,1)}
+.slot:hover{transform:translateY(-5px)}
+.slot.sel{background:var(--surface2);box-shadow:0 0 0 2px var(--yellow)}
+.slot .ord{font-size:12px;font-weight:800;color:var(--muted)}
+@keyframes asentar{0%{transform:translateY(-8px) scale(1.1)}100%{transform:none}}
+.vuela{position:fixed;z-index:60;pointer-events:none;will-change:transform}
+
+/* ============ Sobre y carta ============ */
+#sobre{overflow-anchor:none}
+.sobre-zona{--w:min(64vw,320px)}
+.colapsa{display:grid;grid-template-rows:1fr;opacity:1;transition:grid-template-rows .8s cubic-bezier(.4,0,.2,1),opacity .5s ease}
+.colapsa.oculto{
+  grid-template-rows:0fr;opacity:0;visibility:hidden;pointer-events:none;
+  transition:grid-template-rows .8s cubic-bezier(.4,0,.2,1),opacity .4s ease,visibility 0s .8s
+}
+.col-in{min-height:0;overflow:hidden}
+.col-pad{padding:6px 22px 34px}
+#cartaVista .col-pad{padding-top:26px}
+.sobre-hint{
+  height:calc(var(--w) * .38);display:flex;align-items:center;justify-content:center;gap:8px;
+  font-family:'Caveat',cursive,'Segoe Script';font-size:26px;font-weight:700;color:var(--rose);text-align:center;transition:opacity .3s
+}
+.sobre-hint b{display:inline-block;font-weight:700;animation:rebota 1.6s ease-in-out infinite}
+.abriendo .sobre-hint{opacity:0}
+
+.sobre{
+  position:relative;display:block;width:var(--w);max-width:100%;aspect-ratio:3/2;margin:0 auto;padding:0;border:0;background:none;
+  cursor:pointer;perspective:1000px;transition:transform .25s ease;-webkit-tap-highlight-color:transparent
+}
+.sobre:not(.abre):active{transform:scale(.97)}
+@media (hover:hover){.sobre:not(.abre):hover{transform:translateY(-4px) rotate(-1deg)}}
+.s-atras,.s-hoja,.s-frente,.s-solapa,.s-sello{position:absolute}
+.s-atras{inset:0;border-radius:12px;background:linear-gradient(180deg,#f2a900,#e39400);box-shadow:0 12px 20px -4px rgba(190,130,0,.35);z-index:0}
+.s-hoja{
+  left:7%;right:7%;top:7%;bottom:5%;z-index:2;padding:10px 12px;text-align:left;border-radius:6px 6px 0 0;
+  background-color:#fffdf3;box-shadow:0 -2px 8px rgba(120,80,0,.18);
+  background-image:repeating-linear-gradient(transparent,transparent 15px,rgba(232,87,122,.2) 15px,rgba(232,87,122,.2) 16px);
+  background-position:0 30px;transition:transform .9s .3s cubic-bezier(.3,1.25,.4,1)
+}
+.s-hoja b{font-family:'Caveat',cursive,'Segoe Script';font-size:21px;font-weight:700;color:#e8577a}
+.abre .s-hoja{transform:translateY(-46%)}
+.s-frente{left:0;top:0;width:100%;height:100%;z-index:3;filter:drop-shadow(0 -1px 2px rgba(150,90,0,.25))}
+.s-solapa{
+  left:0;top:0;width:100%;height:56%;z-index:4;transform-origin:50% 0;transform-style:preserve-3d;
+  transition:transform .8s cubic-bezier(.45,.05,.3,1),z-index 0s .4s
+}
+.abre .s-solapa{transform:rotateX(-180deg);z-index:1}
+.s-cara{position:absolute;left:0;top:0;width:100%;height:100%;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.s-cara.b{transform:rotateX(180deg)}
+.s-sello{
+  left:50%;top:56%;z-index:5;width:46px;height:46px;margin:-23px 0 0 -23px;border-radius:50%;background:var(--rose);
+  border:3px solid #fff;display:grid;place-items:center;box-shadow:0 3px 8px rgba(0,0,0,.28);transition:opacity .25s,transform .25s
+}
+.s-sello svg{width:20px;height:19px;fill:#fff;animation:latido 1.7s ease-in-out infinite}
+.abre .s-sello{opacity:0;transform:scale(.3)}
+
+.papel{
+  position:relative;max-width:540px;margin:0 auto;padding:clamp(26px,6vw,40px) clamp(20px,6vw,36px) 26px;
+  background:#fffdf3;color:#4a3218;border-radius:14px;border:2px solid rgba(160,110,20,.22);
+  box-shadow:0 12px 22px -6px rgba(190,130,0,.28)
+}
+.papel-flor{position:absolute;top:-16px;right:-8px;width:54px;height:54px;transform:rotate(14deg);filter:drop-shadow(0 4px 6px rgba(200,140,0,.3));pointer-events:none}
+.papel-para{font-family:'Caveat',cursive,'Segoe Script';font-size:32px;font-weight:700;color:#e8577a;line-height:1.1;margin-bottom:14px}
+.papel-txt{
+  font-family:'Caveat',cursive,'Segoe Script';font-size:24px;font-weight:500;line-height:32px;
+  background-image:repeating-linear-gradient(transparent,transparent 31px,rgba(232,87,122,.17) 31px,rgba(232,87,122,.17) 32px)
+}
+.papel-txt p{margin:0 0 32px;white-space:pre-line;overflow-wrap:anywhere}
+.papel-txt p:last-child{margin-bottom:0}
+.papel-cierre{margin-top:22px;text-align:right;font-family:'Caveat',cursive,'Segoe Script';font-size:26px;font-weight:700;color:#8a6a3e}
+.papel-firma{text-align:right;font-family:'Caveat',cursive,'Segoe Script';font-size:38px;font-weight:700;color:#e8577a;line-height:1.1}
+.abierto .papel{animation:desdoblar .9s .25s cubic-bezier(.3,1.2,.4,1) both}
+.abierto .papel-para{animation:aparece .7s .55s ease both}
+.abierto .papel-txt p{animation:aparece .7s calc(.75s + var(--i,0) * .22s) ease both}
+.abierto .papel-cierre{animation:aparece .7s calc(.95s + var(--n,0) * .22s) ease both}
+.abierto .papel-firma{animation:aparece .7s calc(1.15s + var(--n,0) * .22s) ease both}
+@keyframes desdoblar{0%{transform:translateY(26px) scale(.94);opacity:0}100%{transform:none;opacity:1}}
+@keyframes aparece{0%{opacity:0;transform:translateY(8px)}100%{opacity:1;transform:none}}
+
+/* ============ Firma sutil ============ */
+.mati{
+  font-family:'Caveat',cursive,'Segoe Script';font-size:19px;font-weight:500;line-height:1.25;
+  color:var(--muted);opacity:.72;text-align:right;margin:22px 4px 0;transition:opacity .3s;text-wrap:balance
+}
+.mati::after{content:" ♥";color:var(--rose);font-size:.8em}
+@media (hover:hover){.juego:hover .mati,.mati:hover{opacity:.95}}
+.hero .mati{text-align:center;font-size:21px;margin:22px auto 0;max-width:22em;opacity:.8}
+footer .mati{text-align:center;font-size:21px;margin:14px auto 0;max-width:22em}
+
+/* ============ Varios ============ */
+.burst{position:fixed;pointer-events:none;z-index:90;font-size:22px;line-height:1}
+footer{text-align:center;padding:44px 20px 60px;color:var(--muted)}
+footer .script{font-size:32px}
+@media (max-width:700px){
+  .petal-zona,.riego-zona{grid-template-columns:1fr}
+  .arena{height:300px}
+  .juego{border-radius:24px}
+  .juego .mati{text-align:center;margin:26px 8px 0}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+  .colapsa,.colapsa.oculto,.sobre *{transition-delay:0s!important}
+  .abierto .papel,.abierto .papel *{animation-delay:0s!important}
+}
+
+/* ============ Versión colorida ============ */
+:root{--pink:#ff6fae;--purple:#9b6bff;--sky:#3fb8f5;--mint:#2fd39a;--orange:#ff9340}
+.hero h1{background:linear-gradient(90deg,var(--rose),var(--orange),var(--yellow-d),var(--mint),var(--sky),var(--purple));-webkit-background-clip:text;background-clip:text;color:transparent;padding-bottom:.08em}
+.d2{filter:hue-rotate(300deg) drop-shadow(0 8px 12px rgba(200,0,120,.25))}
+.d3{filter:hue-rotate(190deg) drop-shadow(0 8px 12px rgba(0,100,200,.25))}
+.d4{filter:hue-rotate(95deg) drop-shadow(0 8px 12px rgba(0,160,90,.25))}
+.h2c{fill:var(--purple)}.h3c{fill:var(--sky)}.h4c{fill:var(--mint)}
+.chips a{border-color:var(--k,var(--line))}
+.chips a:nth-child(2){--k:var(--purple)}.chips a:nth-child(3){--k:var(--sky)}.chips a:nth-child(4){--k:var(--pink)}.chips a:nth-child(5){--k:var(--mint)}.chips a:nth-child(6){--k:var(--rose)}
+.cae.em{line-height:1}
+.nuevo{--acc:var(--pink);border:3px solid var(--acc)}
+.nuevo .kicker{color:var(--acc)}
+#simon{--acc:var(--purple)}#burbujas{--acc:var(--sky)}#pinta{--acc:var(--pink)}#ramo{--acc:var(--mint)}
+.info{display:flex;gap:22px;justify-content:center;flex-wrap:wrap;margin-bottom:16px}
+.msg{min-height:1.6em;text-align:center;font-family:'Fraunces',Georgia,serif;font-style:italic;font-size:clamp(17px,2.4vw,21px);margin:16px 0 0}
+.pads{display:grid;grid-template-columns:1fr 1fr;gap:14px;max-width:360px;margin:0 auto}
+.pad{aspect-ratio:1;border:0;border-radius:28px;background:var(--c);font-size:clamp(44px,12vw,64px);cursor:pointer;opacity:.55;box-shadow:0 6px 0 rgba(0,0,0,.18);transition:transform .12s,opacity .12s,filter .12s}
+.pad.on{opacity:1;transform:scale(1.07);filter:brightness(1.15) drop-shadow(0 0 16px var(--c))}
+.pad:active{transform:scale(.96)}
+.arena-b{position:relative;height:380px;overflow:hidden;border-radius:24px;background:linear-gradient(180deg,var(--bgC),var(--bgD) 60%,var(--bgA));border:2px solid var(--line)}
+.burb{position:absolute;bottom:-100px;left:var(--x);width:var(--s);height:var(--s);padding:0;border-radius:50%;border:2px solid rgba(255,255,255,.85);cursor:pointer;font-size:calc(var(--s)*.4);
+  background:radial-gradient(circle at 30% 26%,rgba(255,255,255,.95),transparent 32%),radial-gradient(circle at 60% 70%,var(--b),transparent 72%);
+  box-shadow:inset 0 0 14px rgba(255,255,255,.7),0 0 14px var(--b);animation:sube var(--t) linear forwards}
+@keyframes sube{50%{translate:calc(var(--dx)*-1) -280px}to{translate:var(--dx) -560px}}
+.pinta-zona{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px;align-items:center}
+.pinta-zona svg{width:100%;max-width:320px;margin:0 auto;display:block;overflow:visible}
+.pt{fill:var(--surface);stroke:#b07a8f;stroke-width:3;cursor:pointer;transition:fill .25s}
+.pt:hover{filter:brightness(1.07)}
+.pinta-lado{display:flex;flex-direction:column;gap:6px}
+.paleta{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.sw{width:42px;height:42px;border-radius:50%;border:3px solid #fff;background:var(--c);box-shadow:0 0 0 2px var(--line),0 3px 6px rgba(0,0,0,.2);cursor:pointer}
+.sw[aria-pressed=true]{box-shadow:0 0 0 4px var(--text);transform:scale(1.12)}
+.ramo{max-width:320px;margin:0 auto}
+.ramo svg{width:100%;height:auto;display:block;overflow:visible}
+.fl{transform-origin:150px 150px;animation:brota .5s cubic-bezier(.3,1.5,.5,1)}
+@keyframes brota{from{transform:scale(0)}}
+.elige{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:14px}
+.elige button{font-size:30px;width:54px;height:54px;border-radius:50%;border:2px solid var(--line);background:var(--surface2);cursor:pointer}
+@media (max-width:700px){.pinta-zona{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<!-- ===== Símbolos SVG reutilizables ===== -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <radialGradient id="gPetal" cx="50%" cy="85%" r="90%">
+      <stop offset="0" stop-color="#ffe05c"/><stop offset="1" stop-color="#ffb800"/>
+    </radialGradient>
+    <radialGradient id="gCenter" cx="45%" cy="40%" r="70%">
+      <stop offset="0" stop-color="#d98a2b"/><stop offset="1" stop-color="#8a4a12"/>
+    </radialGradient>
+    <linearGradient id="gSobFrente" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffdd55"/><stop offset="1" stop-color="#ffc21a"/>
+    </linearGradient>
+    <linearGradient id="gSobSolapa" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffb300"/><stop offset="1" stop-color="#ffcb3d"/>
+    </linearGradient>
+    <symbol id="corazon" viewBox="0 0 32 30">
+      <path d="M16 28.5C2 18 -2 9 3.5 4.5 8 1 13 3 16 8c3-5 8-7 12.500-3.500C34 9 30 18 16 28.5Z"/>
+    </symbol>
+    <symbol id="flor" viewBox="-100 -100 200 200">
+      <g fill="url(#gPetal)" stroke="#e59a00" stroke-width="1.5" stroke-opacity=".5">
+        <ellipse cx="0" cy="-58" rx="20" ry="38"/>
+        <ellipse cx="0" cy="-58" rx="20" ry="38" transform="rotate(45)"/>
+        <ellipse cx="0" cy="-58" rx="20" ry="38" transform="rotate(90)"/>
+        <ellipse cx="0" cy="-58" rx="20" ry="38" transform="rotate(135)"/>
+        <ellipse cx="0" cy="-58" rx="20" ry="38" transform="rotate(180)"/>
+        <ellipse cx="0" cy="-58" rx="20" ry="38" transform="rotate(225)"/>
+        <ellipse cx="0" cy="-58" rx="20" ry="38" transform="rotate(270)"/>
+        <ellipse cx="0" cy="-58" rx="20" ry="38" transform="rotate(315)"/>
+      </g>
+      <circle r="27" fill="url(#gCenter)"/>
+      <g fill="#5a3410" fill-opacity=".55">
+        <circle cx="0" cy="-15" r="2.4"/><circle cx="13" cy="-8" r="2.4"/><circle cx="13" cy="8" r="2.4"/>
+        <circle cx="0" cy="15" r="2.4"/><circle cx="-13" cy="8" r="2.4"/><circle cx="-13" cy="-8" r="2.4"/>
+        <circle cx="0" cy="0" r="2.4"/>
+      </g>
+    </symbol>
+  </defs>
+</svg>
+
+<div class="caida" id="caida" aria-hidden="true"></div>
+<button class="tema" id="tema" type="button" aria-label="Cambiar entre modo claro y oscuro">🌙</button>
+
+<!-- ===== Portada ===== -->
+<header class="hero">
+  <svg class="deco d1" viewBox="-100 -100 200 200" aria-hidden="true"><use href="#flor" x="-100" y="-100" width="200" height="200"/></svg>
+  <svg class="deco d2" viewBox="-100 -100 200 200" aria-hidden="true"><use href="#flor" x="-100" y="-100" width="200" height="200"/></svg>
+  <svg class="deco d3" viewBox="-100 -100 200 200" aria-hidden="true"><use href="#flor" x="-100" y="-100" width="200" height="200"/></svg>
+  <svg class="deco d4" viewBox="-100 -100 200 200" aria-hidden="true"><use href="#flor" x="-100" y="-100" width="200" height="200"/></svg>
+  <svg class="heart-deco h1c" viewBox="0 0 32 30" aria-hidden="true"><use href="#corazon"/></svg>
+  <svg class="heart-deco h2c" viewBox="0 0 32 30" aria-hidden="true"><use href="#corazon"/></svg>
+  <svg class="heart-deco h3c" viewBox="0 0 32 30" aria-hidden="true"><use href="#corazon"/></svg>
+  <svg class="heart-deco h4c" viewBox="0 0 32 30" aria-hidden="true"><use href="#corazon"/></svg>
+
+  <div class="hero-in">
+    <div class="script">🌈 con todo mi cariño 🌈</div>
+    <h1 id="titulo">Un jardín de flores amarillas</h1>
+    <p class="sub" id="subtitulo">Subtítulo</p>
+    <a class="btn" href="#petalos">Empezar a jugar</a><br>
+    <a class="rebota" href="#petalos" aria-label="Bajar">↓</a>
+    <p class="mati" data-mati></p>
+  </div>
+</header>
+
+<nav class="chips" aria-label="Juegos">
+  <a href="#petalos">🌼 Pétalos</a>
+  <a href="#simon">🎶 Simón</a>
+  <a href="#burbujas">🫧 Burbujas</a>
+  <a href="#pinta">🎨 Pintá</a>
+  <a href="#ramo">💐 Ramo</a>
+  <a href="#sobre">✉️ Carta</a>
+</nav>
+
+<main class="wrap">
+
+  <!-- ===== Juego 1: pétalos ===== -->
+  <section class="juego" id="petalos">
+    <header class="j-head">
+      <span class="kicker">Juego 1</span>
+      <h2>Me quiere, me quiere…</h2>
+      <p>Sacá los pétalos de a uno. Cada uno vuela hasta adelante y te cuenta algo.</p>
+    </header>
+    <div class="petal-zona">
+      <div class="petal-stage" id="petalStage"></div>
+      <div class="petal-lado">
+        <div class="contador">Pétalos sacados: <b id="petalCount">0</b></div>
+        <div class="frase-card" id="petalFrase" aria-live="polite"></div>
+        <div class="final" id="petalFinal"></div>
+      </div>
+    </div>
+    <div class="tray-wrap">
+      <div class="tray-label">tus pétalos, en fila</div>
+      <div class="tray" id="petalTray"></div>
+    </div>
+    <div class="acciones"><button class="btn suave" id="petalReset" type="button">Una flor nueva 🌼</button></div>
+  </section>
+
+  <div class="divisor" aria-hidden="true">
+    <svg viewBox="-100 -100 200 200"><use href="#flor" x="-100" y="-100" width="200" height="200"/></svg>
+    <svg class="h" viewBox="0 0 32 30"><use href="#corazon"/></svg>
+    <svg viewBox="-100 -100 200 200"><use href="#flor" x="-100" y="-100" width="200" height="200"/></svg>
+  </div>
+
+  <!-- ===== Juego 2: Simón ===== -->
+  <section class="juego nuevo" id="simon">
+    <header class="j-head"><span class="kicker">Juego 2</span><h2>Simón de las flores</h2>
+      <p>Mirá el orden en que se iluminan y repetilo. Cada ronda suma una flor más (con sonidito 🎶).</p></header>
+    <div class="info"><div class="contador">Ronda: <b id="simonRonda">0</b></div><div class="contador">Mejor: <b id="simonMejor">0</b></div></div>
+    <div class="pads" id="simonPads"></div>
+    <p class="msg" id="simonMsg" aria-live="polite">Tocá “Empezar” y prestá atención 🌈</p>
+    <div class="acciones"><button class="btn" id="simonBtn" type="button">Empezar 🌸</button></div>
+  </section>
+  <div class="divisor" aria-hidden="true">
+    <svg viewBox="-100 -100 200 200"><use href="#flor" x="-100" y="-100" width="200" height="200"/></svg>
+    <svg class="h" viewBox="0 0 32 30"><use href="#corazon"/></svg>
+    <svg viewBox="-100 -100 200 200"><use href="#flor" x="-100" y="-100" width="200" height="200"/></svg>
+  </div>
+
+  <!-- ===== Juego 3: burbujas ===== -->
+  <section class="juego nuevo" id="burbujas">
+    <header class="j-head"><span class="kicker">Juego 3</span><h2>Burbujas de piropos</h2>
+      <p>Explotá las burbujas antes de que se escapen: cada una guarda algo lindo para vos.</p></header>
+    <div class="info"><div class="contador">Piropos atrapados: <b id="burbCount">0</b></div></div>
+    <div class="arena-b" id="burbArena"></div>
+    <div class="frase-card" id="burbFrase" aria-live="polite" style="margin-top:16px"><p class="vacia">Tocá una burbuja 🌈</p></div>
+  </section>
+  <div class="divisor" aria-hidden="true">
+    <svg viewBox="-100 -100 200 200"><use href="#flor" x="-100" y="-100" width="200" height="200"/></svg>
+    <svg class="h" viewBox="0 0 32 30"><use href="#corazon"/></svg>
+    <svg viewBox="-100 -100 200 200"><use href="#flor" x="-100" y="-100" width="200" height="200"/></svg>
+  </div>
+
+  <!-- ===== Juego 4: pintá la flor ===== -->
+  <section class="juego nuevo" id="pinta">
+    <header class="j-head"><span class="kicker">Juego 4</span><h2>Pintá tu flor</h2>
+      <p>Elegí un color y tocá los pétalos. ¡Que sea la flor más colorida del jardín!</p></header>
+    <div class="pinta-zona">
+      <svg id="pintaSvg" viewBox="-110 -110 220 310" role="img" aria-label="Flor para colorear"></svg>
+      <div class="pinta-lado">
+        <div class="paleta" id="pintaPaleta"></div>
+        <p class="msg" id="pintaMsg" aria-live="polite">Elegí un color y tocá los pétalos 🎨</p>
+        <div class="acciones"><button class="btn" id="pintaSorpresa" type="button">🎲 Sorpresa</button><button class="btn suave" id="pintaBorrar" type="button">Borrar</button></div>
+      </div>
+    </div>
+  </section>
+  <div class="divisor" aria-hidden="true">
+    <svg viewBox="-100 -100 200 200"><use href="#flor" x="-100" y="-100" width="200" height="200"/></svg>
+    <svg class="h" viewBox="0 0 32 30"><use href="#corazon"/></svg>
+    <svg viewBox="-100 -100 200 200"><use href="#flor" x="-100" y="-100" width="200" height="200"/></svg>
+  </div>
+
+  <!-- ===== Juego 5: ramo ===== -->
+  <section class="juego nuevo" id="ramo">
+    <header class="j-head"><span class="kicker">Juego 5</span><h2>Armá tu ramo</h2>
+      <p>Elegí flores una por una y llená el florero. Cabe un ramo de nueve.</p></header>
+    <div class="ramo"><svg viewBox="0 0 300 240" role="img" aria-label="Florero con flores" font-family="'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif">
+      <defs><linearGradient id="gVaso" gradientUnits="userSpaceOnUse" x1="86" y1="134" x2="214" y2="234"><stop offset="0" stop-color="#ffa8cb"/><stop offset="1" stop-color="#ff6fae"/></linearGradient></defs>
+      <path d="M116 134 L184 134 Q186 134 185 138 L172 156 C206 168 214 212 190 234 L110 234 C86 212 94 168 128 156 L115 138 Q114 134 116 134 Z" fill="url(#gVaso)"/>
+      <ellipse cx="150" cy="134" rx="34" ry="5" fill="#b23a73"/>
+      <g id="ramoFlores"></g>
+      <path d="M116 135 Q150 147 184 135 L172.5 156.5 L127.5 156.5 Z" fill="url(#gVaso)"/>
+      <path d="M116 135 Q150 147 184 135" fill="none" stroke="#ff8fbb" stroke-width="5" stroke-linecap="round"/>
+      <ellipse cx="124" cy="192" rx="6" ry="20" fill="#fff" opacity=".35" transform="rotate(12 124 192)"/>
+      <text x="150" y="196" text-anchor="middle" dominant-baseline="central" font-size="34">💛</text>
+    </svg></div>
+    <div class="elige" id="ramoElige"></div>
+    <p class="msg" id="ramoMsg" aria-live="polite">Elegí flores para llenar el florero 🏺</p>
+    <div class="acciones"><button class="btn" id="ramoSorpresa" type="button">🎲 Sorpresa</button><button class="btn suave" id="ramoVaciar" type="button">Vaciar</button></div>
+  </section>
+  <div class="divisor" aria-hidden="true">
+    <svg viewBox="-100 -100 200 200"><use href="#flor" x="-100" y="-100" width="200" height="200"/></svg>
+    <svg class="h" viewBox="0 0 32 30"><use href="#corazon"/></svg>
+    <svg viewBox="-100 -100 200 200"><use href="#flor" x="-100" y="-100" width="200" height="200"/></svg>
+  </div>
+
+  <!-- ===== Sobre y carta ===== -->
+  <section class="juego" id="sobre">
+    <header class="j-head">
+      <span class="kicker">Para vos</span>
+      <h2>Un sobre para el final</h2>
+      <p>Guardé algo escrito sólo para vos. Tocá el sobre para abrirlo.</p>
+    </header>
+    <div class="sobre-zona" id="sobreZona">
+
+      <!-- El sobre cerrado -->
+      <div class="colapsa" id="sobreVista"><div class="col-in"><div class="col-pad">
+        <div class="sobre-hint" aria-hidden="true">Tocá el sobre <b>↓</b></div>
+        <button class="sobre" id="sobreBtn" type="button" aria-label="Abrir el sobre y leer la carta" aria-expanded="false" aria-controls="cartaVista">
+          <span class="s-atras" aria-hidden="true"></span>
+          <span class="s-hoja" aria-hidden="true"><b>Para vos 💛</b></span>
+          <svg class="s-frente" viewBox="0 0 300 200" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M0 0 L150 112 L300 0 L300 188 Q300 200 288 200 L12 200 Q0 200 0 188 Z" fill="url(#gSobFrente)" stroke="#d98a00" stroke-opacity=".55" stroke-width="1.5" stroke-linejoin="round"/>
+            <path d="M6 196 L150 112 L294 196" fill="none" stroke="#d98a00" stroke-opacity=".3" stroke-width="1.2" stroke-linejoin="round"/>
+          </svg>
+          <span class="s-solapa" aria-hidden="true">
+            <svg class="s-cara f" viewBox="0 0 300 112" preserveAspectRatio="none"><polygon points="0,0 300,0 150,112" fill="url(#gSobSolapa)" stroke="#d98a00" stroke-opacity=".6" stroke-width="1.5" stroke-linejoin="round"/></svg>
+            <svg class="s-cara b" viewBox="0 0 300 112" preserveAspectRatio="none"><polygon points="0,0 300,0 150,112" fill="#fff2bf" stroke="#d98a00" stroke-opacity=".45" stroke-width="1.5" stroke-linejoin="round"/></svg>
+          </span>
+          <span class="s-sello" aria-hidden="true"><svg viewBox="0 0 32 30"><use href="#corazon"/></svg></span>
+        </button>
+      </div></div></div>
+
+      <!-- La carta abierta -->
+      <div class="colapsa oculto" id="cartaVista"><div class="col-in"><div class="col-pad">
+        <article class="papel" id="papel" tabindex="-1" aria-labelledby="cartaPara">
+          <svg class="papel-flor" viewBox="-100 -100 200 200" aria-hidden="true"><use href="#flor" x="-100" y="-100" width="200" height="200"/></svg>
+          <div class="papel-para" id="cartaPara"></div>
+          <div class="papel-txt" id="cartaTxt"></div>
+          <div class="papel-cierre" id="cartaCierre"></div>
+          <div class="papel-firma" id="cartaFirma"></div>
+        </article>
+        <div class="acciones"><button class="btn suave" id="cartaCerrar" type="button">Guardarla de nuevo 💌</button></div>
+      </div></div></div>
+
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="script" id="firma">Hecho con amor 💛</div>
+  <p>🌸 🌻 💛 🦋 💜 🌷</p>
+  <p class="mati" data-mati></p>
+</footer>
+
+<script>
+"use strict";
+
+/* ============================================================
+   ✏️  TODO EL CONTENIDO EDITABLE ESTÁ EN ESTE BLOQUE  ✏️
+   Cambiá los textos, sumá o quitá elementos de las listas y
+   los juegos se adaptan solos (no hace falta tocar nada más).
+   ============================================================ */
+const C = {
+  titulo: "Un jardín de mil colores, hecho con cariño para vos",
+  subtitulo: "Deshojá pétalos, explotá burbujas, pintá flores y armá tu ramo. Cada rincón de este jardín guarda algo lindo para vos. La distancia no le gana.",
+  firma: "Hecho con amor, con todos los colores que me hacés ver 💗",
+  /* Dedicatoria sutil: aparece en la portada, al pie de cada juego, en el vale, en la tierra de la planta y en el footer */
+  dedicatoria: "Hecho con amor por el amor de tu vida (Yo, Mati)",
+
+  /* --- Juego 1: cada pétalo = una frase (podés poner más o menos de 12) --- */
+  petalos: [
+    "Me hacés reír incluso a kilómetros de distancia.",
+    "Con vos hasta una charla cualquiera se siente como una cita.",
+    "Sos mi lugar favorito, esté donde esté.",
+    "Pensar en vos me arregla el día entero.",
+    "Me encanta cómo me hacés sentir cada vez que hablamos.",
+    "Gracias por bancar la distancia con tanta paciencia y tanto cariño.",
+    "Pienso en vos más de lo que admito.",
+    "Sos mi primavera todo el año.",
+    "Cada mensaje tuyo es un pedacito lindo de mi día.",
+    "Me hacés querer ser mejor.",
+    "Cuento los días hasta poder abrazarte por primera vez.",
+    "Y la respuesta siempre fue la misma: te quiero. 💛"
+  ],
+  petalosFinal: "¡No queda ni un pétalo! Y la flor lo dijo clarito: te quiero, y te espero 💛",
+
+  /* --- Juego 2: Simón (mensaje según las rondas que lograste) --- */
+  simon: [
+    "Una flor… y ya me hiciste sonreír 🌸",
+    "Dos rondas, como los dos que nos elegimos cada día 💞",
+    "Tres: ¡qué memoria! Y qué corazón más grande tenés 💛",
+    "¡Cuatro! Brillás en todos los colores 🌈",
+    "¡Cinco o más! Me dejás sin palabras (y con mariposas) 🦋"
+  ],
+  /* --- Juego 3: piropos dentro de las burbujas --- */
+  burbujas: [
+    "Sos mi color favorito, en todos los tonos 🌈",
+    "El corazón me late más rápido cuando pienso en vos 💗",
+    "Tu risa es mi canción preferida 🎶",
+    "Con vos todo tiene más color",
+    "Sos lo mejor que me pasó 💛",
+    "Cada día te elijo de nuevo 🌷",
+    "Sos mi lugar seguro, incluso a la distancia 🏡",
+    "Gracias por hacerme tan feliz ✨",
+    "Te pienso al despertar y antes de dormir 🌙",
+    "Ya falta menos para abrazarnos 🤗"
+  ],
+  /* --- Juego 4 y 5: mensajes finales --- */
+  pinta: "¡Qué obra de arte! Esta flor es tan linda como vos 🎨💗",
+  ramo: "¡Ramo completo! Cada flor es un motivo por el que pienso en vos 💐",
+
+  /* --- Sobre y carta (el sobre del final: al tocarlo se abre la carta) ---
+     ✍️ ACÁ ESCRIBÍS TU CARTA: reemplazá el texto de abajo por el tuyo.
+     · Una línea en blanco arma un párrafo nuevo.
+     · Los saltos de línea normales también se respetan.
+     · No uses el carácter ` (comilla invertida) ni la secuencia ${ dentro del texto. */
+  carta: {
+    para: "Para vos,",
+    texto: `Acá va tu carta 💛
+
+Reemplazá este texto por lo que quieras decirle: en el bloque de textos buscá "carta" y escribí dentro de "texto".
+
+Cada línea en blanco arma un párrafo nuevo, y los saltos de línea se respetan.`,
+    cierre: "Con todo mi amor,",
+    firma: "Mati 💛"
+  },
+};
+
+/* ============================================================
+   A partir de acá está la lógica de los juegos.
+   ============================================================ */
+const $ = (s, r = document) => r.querySelector(s);
+const esc = s => String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const mezclar = a => { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+const azar = a => a[Math.floor(Math.random() * a.length)];
+const reducido = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const centroDe = el => { const r = el.getBoundingClientRect(); return [r.left + r.width / 2, r.top + r.height / 2]; };
+
+/* Explosión de corazones y flores (se usa en varios juegos) */
+const COL = ["💖", "🌸", "🦋", "💜", "✨", "🌈"];
+const EMO = ["💛", "❤️", "🌼", "💖", "🌻"];
+function lluvia(x, y, n = 16, set = EMO) {
+  if (reducido || !document.body.animate) return;
+  for (let i = 0; i < n; i++) {
+    const s = document.createElement("span");
+    s.className = "burst"; s.textContent = set[i % set.length];
+    s.style.left = x + "px"; s.style.top = y + "px";
+    document.body.appendChild(s);
+    const ang = Math.random() * Math.PI * 2, d = 60 + Math.random() * 120;
+    const a = s.animate([
+      { transform: "translate(-50%,-50%) translate(0px,0px) scale(.3) rotate(0deg)", opacity: 1 },
+      { transform: `translate(-50%,-50%) translate(${Math.cos(ang) * d}px,${Math.sin(ang) * d - 40}px) scale(${0.8 + Math.random() * 0.8}) rotate(${(Math.random() - 0.5) * 90}deg)`, opacity: 0 }
+    ], { duration: 900 + Math.random() * 700, easing: "cubic-bezier(.2,.7,.3,1)" });
+    a.onfinish = () => s.remove();
+  }
+}
+
+/* ---------- Textos generales y fondo ---------- */
+function aplicarTextos() {
+  $("#titulo").textContent = C.titulo;
+  $("#subtitulo").textContent = C.subtitulo;
+  $("#firma").textContent = C.firma;
+  /* Dedicatoria sutil: una firmita al pie de cada juego + los lugares marcados con data-mati */
+  document.querySelectorAll(".juego").forEach(s => {
+    const p = document.createElement("p");
+    p.className = "mati"; p.textContent = C.dedicatoria;
+    s.appendChild(p);
+  });
+  document.querySelectorAll("[data-mati]").forEach(el => { el.textContent = C.dedicatoria; });
+}
+function fondo() {
+  if (reducido) return;
+  const cont = $("#caida");
+  for (let i = 0; i < 18; i++) {
+    const corazon = i % 4 === 3;
+    const s = document.createElement("span");
+    const size = corazon ? 10 + Math.random() * 10 : 10 + Math.random() * 14;
+    s.className = corazon ? "cae corazon" : "cae pet";
+    s.style.cssText = `left:${Math.random() * 100}%;width:${size}px;height:${size}px;font-size:${size}px;` +
+      `animation-duration:${9 + Math.random() * 10}s;animation-delay:${-Math.random() * 18}s;--dx:${(Math.random() - 0.5) * 160}px`;
+    if (corazon) { s.textContent = "♥"; s.style.width = "auto"; }
+    cont.appendChild(s);
+  }
+}
+
+/* ============================================================
+   Juego 1 · Deshojar la flor
+   ============================================================ */
+function juegoPetalos() {
+  const frases = C.petalos, n = frases.length;
+  const stage = $("#petalStage"), tray = $("#petalTray"), card = $("#petalFrase"), cnt = $("#petalCount"), fin = $("#petalFinal");
+  const L = 150, r0 = 24;
+  const hw = Math.min(30, 2 * Math.PI * 90 / n * 0.55), w = hw / 0.75;
+  const d = `M0,${-r0} C${-w},${-(r0 + L * .25)} ${-w},${-(r0 + L * .75)} 0,${-(r0 + L)} C${w},${-(r0 + L * .75)} ${w},${-(r0 + L * .25)} 0,${-r0}Z`;
+  const vbx = -(hw + 3), vbw = 2 * (hw + 3), vby = -(r0 + L + 3), vbh = L + 6;
+  const dentro = `<path d="${d}" fill="url(#gPetal)" stroke="#e59a00" stroke-opacity=".55" stroke-width="1.5"/>` +
+    `<path d="M0,${-(r0 + 8)} L0,${-(r0 + L * .7)}" stroke="#e59a00" stroke-opacity=".35" stroke-width="2.5" stroke-linecap="round" fill="none"/>`;
+  const petalSvg = (wa, ha) => `<svg viewBox="${vbx} ${vby} ${vbw} ${vbh}" width="${wa}" height="${ha}" aria-hidden="true">${dentro}</svg>`;
+  let usados = new Set();
+
+  function armar() {
+    usados = new Set();
+    tray.innerHTML = "";
+    fin.classList.remove("on"); fin.textContent = "";
+    cnt.textContent = `0 de ${n}`;
+    card.classList.remove("pop");
+    card.innerHTML = '<p class="vacia">Tocá un pétalo para empezar 🌼</p>';
+    let h = '<svg viewBox="0 0 400 400" role="group" aria-label="Flor amarilla para deshojar">';
+    for (let i = 0; i < n; i++) {
+      h += `<g class="petal" data-i="${i}" role="button" tabindex="0" aria-label="Pétalo ${i + 1} de ${n}" transform="translate(200 200) rotate(${(360 / n * i).toFixed(3)})"><g class="pi">${dentro}</g></g>`;
+    }
+    h += '<circle cx="200" cy="200" r="40" fill="url(#gCenter)" stroke="#7a4310" stroke-opacity=".4" stroke-width="2" pointer-events="none"/>';
+    for (let k = 0; k < 14; k++) {
+      const a = k / 14 * Math.PI * 2;
+      h += `<circle cx="${(200 + Math.sin(a) * 30).toFixed(1)}" cy="${(200 - Math.cos(a) * 30).toFixed(1)}" r="2.4" fill="#5a3410" fill-opacity=".5" pointer-events="none"/>`;
+    }
+    h += '<use href="#corazon" x="188" y="189" width="24" height="22" fill="#ffe9a8" pointer-events="none"/></svg>';
+    stage.innerHTML = h;
+    stage.querySelectorAll(".petal").forEach(p => {
+      const go = () => soltar(+p.dataset.i, p);
+      p.addEventListener("click", go);
+      p.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); go(); } });
+    });
+  }
+
+  function mostrar(i, orden, slot) {
+    tray.querySelectorAll(".slot").forEach(s => s.classList.toggle("sel", s === slot));
+    card.innerHTML = "";
+    const k = document.createElement("span"); k.className = "num"; k.textContent = `Pétalo ${orden}`;
+    const p = document.createElement("p"); p.textContent = frases[i];
+    card.append(k, p);
+    card.classList.remove("pop"); void card.offsetWidth; card.classList.add("pop");
+  }
+
+  function terminar() {
+    fin.textContent = C.petalosFinal;
+    fin.classList.add("on");
+    const [x, y] = centroDe(stage);
+    lluvia(x, y, 22);
+  }
+
+  function soltar(i, p) {
+    if (usados.has(i)) return;
+    usados.add(i);
+    const orden = usados.size;
+    p.classList.add("gone"); p.removeAttribute("tabindex");
+    cnt.textContent = `${orden} de ${n}`;
+
+    const slot = document.createElement("button");
+    slot.type = "button"; slot.className = "slot"; slot.dataset.i = i;
+    slot.setAttribute("aria-label", `Pétalo ${orden}: ver su frase`);
+    slot.innerHTML = petalSvg(64 * vbw / vbh, 64) + `<span class="ord">${orden}</span>`;
+    slot.addEventListener("click", () => mostrar(i, orden, slot));
+    tray.appendChild(slot);
+
+    const llegar = () => { slot.classList.add("lleno"); mostrar(i, orden, slot); if (usados.size === n) terminar(); };
+    if (reducido || !document.body.animate) { llegar(); return; }
+
+    /* Vuelo del pétalo desde la flor hasta su lugar en la fila */
+    const sr = stage.querySelector("svg").getBoundingClientRect();
+    const k0 = sr.width / 400, a = 360 / n * i, rad = a * Math.PI / 180, dd = r0 + L / 2;
+    const cx = sr.left + sr.width / 2 + Math.sin(rad) * dd * k0;
+    const cy = sr.top + sr.height / 2 - Math.cos(rad) * dd * k0;
+    const W = vbw * k0, H = vbh * k0;
+    const fly = document.createElement("div");
+    fly.className = "vuela";
+    fly.style.cssText = `left:${cx - W / 2}px;top:${cy - H / 2}px;width:${W}px;height:${H}px`;
+    fly.innerHTML = petalSvg("100%", "100%");
+    document.body.appendChild(fly);
+    const tr = slot.querySelector("svg").getBoundingClientRect();
+    const dx = tr.left + tr.width / 2 - cx, dy = tr.top + tr.height / 2 - cy, kk = tr.height / H;
+    const anim = fly.animate([
+      { transform: `translate(0px,0px) rotate(${a}deg) scale(1)` },
+      { transform: `translate(${dx * .5}px,${dy * .5 - 70}px) rotate(${a * .3 + 200}deg) scale(${(1 + kk) / 2})`, offset: .5 },
+      { transform: `translate(${dx}px,${dy}px) rotate(0deg) scale(${kk})` }
+    ], { duration: 950, easing: "ease-in-out", fill: "forwards" });
+    anim.onfinish = () => { fly.remove(); llegar(); };
+  }
+
+  $("#petalReset").addEventListener("click", armar);
+  armar();
+}
+
+/* ===== Extra: emojis de colores que flotan (además de los pétalos) ===== */
+function fondoColor() {
+  if (reducido) return;
+  const cont = $("#caida"), E = ["💖", "🌸", "🦋", "💜", "🌷", "✨", "💙", "🌈"];
+  for (let i = 0; i < 10; i++) {
+    const t = document.createElement("span");
+    t.className = "cae em"; t.textContent = E[i % E.length];
+    t.style.cssText = `left:${Math.random() * 100}%;font-size:${14 + Math.random() * 14}px;animation-duration:${10 + Math.random() * 10}s;animation-delay:${-Math.random() * 18}s;--dx:${(Math.random() - 0.5) * 160}px`;
+    cont.appendChild(t);
+  }
+}
+
+/* ===== Juego 2 · Simón de las flores ===== */
+function juegoSimon() {
+  const cont = $("#simonPads"), msg = $("#simonMsg"), rd = $("#simonRonda"), mj = $("#simonMejor"), btn = $("#simonBtn");
+  const P = [["🌸", "#ff6fae", 262], ["🌻", "#ffc61a", 330], ["🌷", "#9b6bff", 392], ["🦋", "#3fb8f5", 523]];
+  const esp = ms => new Promise(r => setTimeout(r, ms));
+  let ac, seq = [], pos = 0, activo = false, mejor = 0;
+  const tono = f => {
+    try {
+      ac = ac || new (window.AudioContext || window.webkitAudioContext)();
+      const o = ac.createOscillator(), g = ac.createGain(); o.frequency.value = f;
+      g.gain.setValueAtTime(.2, ac.currentTime); g.gain.exponentialRampToValueAtTime(.001, ac.currentTime + .45);
+      o.connect(g); g.connect(ac.destination); o.start(); o.stop(ac.currentTime + .45);
+    } catch (e) { /* sin audio, el juego sigue */ }
+  };
+  const pads = P.map((p, i) => {
+    const b = document.createElement("button"); b.type = "button"; b.className = "pad";
+    b.style.setProperty("--c", p[1]); b.textContent = p[0]; b.setAttribute("aria-label", "Flor " + (i + 1));
+    b.onclick = () => toca(i); cont.appendChild(b); return b;
+  });
+  const flash = async i => { pads[i].classList.add("on"); tono(P[i][2]); await esp(360); pads[i].classList.remove("on"); await esp(140); };
+  async function turno() {
+    activo = false; rd.textContent = seq.length; msg.textContent = "Mirá bien… 👀"; await esp(700);
+    for (const i of seq) await flash(i);
+    pos = 0; activo = true; msg.textContent = "¡Ahora vos! 🌼";
+  }
+  const sube = () => { seq.push(Math.floor(Math.random() * 4)); turno(); };
+  async function toca(i) {
+    if (!activo) return;
+    flash(i);
+    if (i !== seq[pos]) {
+      activo = false; const n = seq.length - 1;
+      msg.textContent = n ? C.simon[Math.min(n, C.simon.length) - 1] : "¡Casi! Probá otra vez 🌱";
+      seq = []; btn.disabled = false; btn.textContent = "Jugar otra vez 🌸"; return;
+    }
+    if (++pos === seq.length) {
+      activo = false;
+      if (seq.length > mejor) { mejor = seq.length; mj.textContent = mejor; }
+      const [x, y] = centroDe(pads[i]); lluvia(x, y, 8, COL);
+      await esp(900); sube();
+    }
+  }
+  btn.onclick = () => { seq = []; btn.disabled = true; sube(); };
+}
+
+/* ===== Juego 3 · Burbujas de piropos ===== */
+function juegoBurbujas() {
+  const ar = $("#burbArena"), fr = $("#burbFrase"), ct = $("#burbCount");
+  const COLS = ["#ff6fae", "#3fb8f5", "#9b6bff", "#2fd39a", "#ffc61a", "#ff9340"], EM = ["💗", "💛", "🌸", "✨", "🦋", "💜"];
+  let cola = [], n = 0, timer;
+  const suelta = () => {
+    if (ar.children.length > (reducido ? 8 : 14)) return;
+    const b = document.createElement("button"), s = 58 + Math.random() * 40;
+    b.type = "button"; b.className = "burb"; b.textContent = azar(EM); b.setAttribute("aria-label", "Burbuja con un piropo");
+    b.style.cssText = `--x:${4 + Math.random() * 80}%;--s:${s}px;--b:${azar(COLS)};--t:${8 + Math.random() * 6}s;--dx:${(Math.random() - .5) * 80}px`;
+    if (reducido) { b.style.bottom = 10 + Math.random() * 60 + "%"; b.style.animation = "none"; }
+    else b.addEventListener("animationend", () => b.remove());
+    b.onclick = () => {
+      const [x, y] = centroDe(b); b.remove(); lluvia(x, y, 7, COL);
+      if (!cola.length) cola = mezclar(C.burbujas.slice());
+      fr.innerHTML = `<span class="num">Piropo #${++n}</span><p>${esc(cola.pop())}</p>`;
+      ct.textContent = n; fr.classList.remove("pop"); void fr.offsetWidth; fr.classList.add("pop");
+    };
+    ar.appendChild(b);
+  };
+  new IntersectionObserver(([e]) => { clearInterval(timer); if (e.isIntersecting) { suelta(); timer = setInterval(suelta, 850); } }).observe(ar);
+}
+
+/* ===== Juego 4 · Pintá tu flor ===== */
+function juegoPinta() {
+  const svg = $("#pintaSvg"), pal = $("#pintaPaleta"), msg = $("#pintaMsg");
+  const K = ["#ff6fae", "#ff5a5f", "#ff9340", "#ffc61a", "#2fd39a", "#3fb8f5", "#9b6bff", "#ffffff"];
+  const ini = msg.textContent; let col = K[0], festejo = false;
+  let h = `<path d="M0 30 C-6 90 8 130 0 190" stroke="#4b8a3d" stroke-width="7" fill="none" stroke-linecap="round"/>` +
+    `<ellipse cx="-30" cy="125" rx="30" ry="12" transform="rotate(-25 -30 125)" fill="#6fae5a"/><ellipse cx="30" cy="150" rx="30" ry="12" transform="rotate(25 30 150)" fill="#6fae5a"/>`;
+  for (let k = 0; k < 8; k++) h += `<ellipse class="pt" cx="0" cy="-58" rx="24" ry="46" transform="rotate(${k * 45})" tabindex="0" role="button" aria-label="Pétalo ${k + 1}"/>`;
+  svg.innerHTML = h + `<circle class="pt" r="30" tabindex="0" role="button" aria-label="Centro"/>`;
+  const pts = [...svg.querySelectorAll(".pt")];
+  const pinta = (p, c) => { p.style.fill = c; p.dataset.c = c; };
+  const revisa = () => {
+    const ya = pts.filter(p => p.dataset.c);
+    if (!festejo && ya.length === pts.length && new Set(ya.map(p => p.dataset.c)).size >= 4) {
+      festejo = true; msg.textContent = C.pinta; const [x, y] = centroDe(svg); lluvia(x, y, 16, COL);
+    }
+  };
+  pts.forEach(p => {
+    p.addEventListener("click", () => { pinta(p, col); revisa(); });
+    p.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); p.dispatchEvent(new Event("click")); } });
+  });
+  K.forEach(c => {
+    const b = document.createElement("button"); b.type = "button"; b.className = "sw"; b.style.setProperty("--c", c);
+    b.setAttribute("aria-label", "Color " + c); b.setAttribute("aria-pressed", c === col);
+    b.onclick = () => { col = c;[...pal.children].forEach(x => x.setAttribute("aria-pressed", x === b)); };
+    pal.appendChild(b);
+  });
+  $("#pintaSorpresa").onclick = () => { pts.forEach(p => pinta(p, azar(K.slice(0, 7)))); revisa(); };
+  $("#pintaBorrar").onclick = () => { pts.forEach(p => { p.style.fill = ""; delete p.dataset.c; }); festejo = false; msg.textContent = ini; };
+}
+
+/* ===== Juego 5 · Armá tu ramo ===== */
+function juegoRamo() {
+  const ram = $("#ramoFlores"), msg = $("#ramoMsg"), el = $("#ramoElige");
+  const F = ["🌸", "🌷", "🌹", "🌻", "🌺", "🌼"], A = [0, -12, 12, -24, 24, -36, 36, -6, 6], ini = msg.textContent;
+  const r = (a, b) => a + Math.random() * (b - a);
+  let n = 0;
+  const pon = f => {
+    if (n >= A.length) return;
+    const k = n++, a = A[k] + (k ? r(-4, 4) : 0), rad = a * Math.PI / 180, L = 100 - Math.abs(a) * .6 + r(-6, 6), s = a < 0 ? -1 : 1;
+    const x0 = 150 + a * .45 + (k ? 0 : 2), y0 = 150, x2 = x0 + L * Math.sin(rad), y2 = y0 - L * Math.cos(rad);
+    const bend = s * r(6, 16) * (Math.random() < .25 ? -1 : 1);
+    const cx = (x0 + x2) / 2 + bend * Math.cos(rad), cy = (y0 + y2) / 2 + bend * Math.sin(rad);
+    const t = .5, hx = (1 - t) ** 2 * x0 + 2 * (1 - t) * t * cx + t * t * x2, hy = (1 - t) ** 2 * y0 + 2 * (1 - t) * t * cy + t * t * y2;
+    ram.insertAdjacentHTML("beforeend",
+      `<g class="fl"><path d="M${x0} ${y0} Q${cx} ${cy} ${x2} ${y2}" fill="none" stroke="#4b8a3d" stroke-width="3.5" stroke-linecap="round"/>` +
+      `<ellipse cx="${hx + s * 9}" cy="${hy}" rx="9" ry="4" fill="#6fae5a" transform="rotate(${-30 * s} ${hx + s * 9} ${hy})"/>` +
+      `<text x="${x2}" y="${y2}" text-anchor="middle" dominant-baseline="central" font-size="${r(34, 42)}" transform="rotate(${a * .6 + r(-10, 10)} ${x2} ${y2})">${f}</text></g>`);
+    msg.textContent = n === A.length ? C.ramo : `${n} ${n === 1 ? "flor" : "flores"} para vos 💗`;
+    if (n === A.length) { const [x, y] = centroDe($(".ramo")); lluvia(x, y, 14, COL); }
+  };
+  F.forEach(f => {
+    const b = document.createElement("button"); b.type = "button"; b.textContent = f; b.setAttribute("aria-label", "Agregar " + f);
+    b.onclick = () => pon(f); el.appendChild(b);
+  });
+  $("#ramoSorpresa").onclick = () => { while (n < A.length) pon(azar(F)); };
+  $("#ramoVaciar").onclick = () => { ram.innerHTML = ""; n = 0; msg.textContent = ini; };
+}
+
+/* ============================================================
+   Sobre y carta
+   ============================================================ */
+function sobre() {
+  const K = C.carta;
+  if (!K) return;
+  const zona = $("#sobreZona"), btn = $("#sobreBtn"), vistaS = $("#sobreVista"), vistaC = $("#cartaVista");
+  const papel = $("#papel"), cont = $("#cartaTxt");
+
+  $("#cartaPara").textContent = K.para || "";
+  const pars = String(K.texto || "").replace(/\r/g, "").trim().split(/\n[ \t]*\n/).filter(x => x.trim());
+  pars.forEach((par, i) => {
+    const p = document.createElement("p");
+    p.textContent = par.trim();
+    p.style.setProperty("--i", Math.min(i, 7));
+    cont.appendChild(p);
+  });
+  papel.style.setProperty("--n", Math.min(pars.length, 8));
+  $("#cartaCierre").textContent = K.cierre || "";
+  $("#cartaFirma").textContent = K.firma || "";
+
+  let ocupado = false;
+  const suave = reducido ? "auto" : "smooth";
+
+  btn.addEventListener("click", () => {
+    if (ocupado || zona.classList.contains("abierto")) return;
+    ocupado = true;
+    vistaS.classList.add("abriendo");
+    btn.classList.add("abre");
+    btn.setAttribute("aria-expanded", "true");
+    const [x, y] = centroDe(btn); lluvia(x, y, 14);
+    setTimeout(() => {
+      zona.classList.add("abierto");
+      vistaS.classList.add("oculto");
+      vistaC.classList.remove("oculto");
+      papel.focus({ preventScroll: true });
+      let hecho = false;
+      const irALaCarta = () => {
+        if (hecho) return; hecho = true;
+        window.scrollTo({ top: window.scrollY + papel.getBoundingClientRect().top - 84, behavior: suave });
+        ocupado = false;
+      };
+      vistaC.addEventListener("transitionend", e => { if (e.propertyName === "grid-template-rows") irALaCarta(); });
+      setTimeout(irALaCarta, reducido ? 0 : 1100);
+    }, reducido ? 0 : 1350);
+  });
+
+  $("#cartaCerrar").addEventListener("click", () => {
+    zona.classList.remove("abierto");
+    vistaC.classList.add("oculto");
+    vistaS.classList.remove("oculto", "abriendo");
+    btn.classList.remove("abre");
+    btn.setAttribute("aria-expanded", "false");
+    btn.focus({ preventScroll: true });
+    $("#sobre").scrollIntoView({ behavior: suave, block: "start" });
+  });
+}
+
+
+/* ---------- Modo claro / oscuro ---------- */
+function tema() {
+  const tb = $("#tema"), root = document.documentElement;
+  const sistemaOscuro = () => window.matchMedia("(prefers-color-scheme: dark)").matches;
+  const esOscuro = () => root.dataset.theme ? root.dataset.theme === "dark" : sistemaOscuro();
+  tb.textContent = esOscuro() ? "☀️" : "🌙";
+  tb.addEventListener("click", () => {
+    const oscuro = esOscuro();
+    root.dataset.theme = oscuro ? "light" : "dark";
+    tb.textContent = oscuro ? "🌙" : "☀️";
+  });
+}
+
+/* ---------- Arranque ---------- */
+aplicarTextos();
+fondo();
+fondoColor();
+tema();
+juegoPetalos();
+juegoSimon();
+juegoBurbujas();
+juegoPinta();
+juegoRamo();
+sobre();
+console.log("%c" + C.dedicatoria + " 💛", "color:#e8577a;font:700 18px Caveat,cursive");
+</script>
+</body>
+</html>
